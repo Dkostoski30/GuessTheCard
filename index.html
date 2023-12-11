@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Gambling Game</title>
+    <title>Guess the Card</title>
     <link href="https://fonts.cdnfonts.com/css/casino" rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
@@ -121,10 +121,10 @@
         background-color: #cb0000;
         border: 5px solid rgba(121, 11, 11, 0.85);
         color: white;
-        margin-right: 0.02em;
+        margin-right: 0.5em;
     }
     #BlackButton{
-        margin-left: 0.02em;
+        margin-left: 0.5em;
         background-color: black;
         border: 5px solid #464646;
     }
@@ -155,6 +155,52 @@
         z-index: 999;
         position: absolute;
         border-radius: 1.14em;
+    }
+    #Score{
+        position: absolute;
+        top: 1em;
+        right: 1em;
+        z-index: 999999;
+    }
+    .ScoreElement{
+        display: grid;
+        grid-template-columns: 2.3em 2.3em;
+        gap: 0.001em;
+        font-size: 1.8em;
+        margin-bottom: 14%;
+    }
+    .ScoreElement>span{
+        margin-top: 0.21em;
+    }
+    .GameOverDiv{
+        text-align: center;
+        width: 80%;
+        height: auto;
+        padding: 5%;
+        color: #ffffff;
+        margin-right: auto;
+        margin-left: auto;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+    }
+    .GameOverDiv h4{
+        font-size: 1.2em;
+    }
+    .GameOverDiv div{
+        font-size: 2em;
+    }
+    .GameOverDiv div span{
+        font-size: 2.2em;
+    }
+    .GameOverDiv .ScoreGrid{
+        display: grid;
+        grid-template-columns: 128px 128px;
+        grid-template-rows: 128px 128px;
+    }
+    #GameOverContainer > div > div > p {
+        font-size: 0.8em;
     }
 </style>
 <script>
@@ -215,35 +261,34 @@
         {"suit": "spades", "value": "K", "image": "king_of_spades.png", "color": "Black"},
         {"suit": "spades", "value": "A", "image": "ace_of_spades.png", "color": "Black"}
     ]
-
+    var currentCard;
+    var player;
     class Player{
         vlog;
         dobivka;
         pogodeniKarti
         constructor(vlog) {
             this.vlog = vlog;
-            this.dobivka = 0;
+            this.dobivka = vlog;
             this.pogodeniKarti = 0;
         }
-        pogodenaKarta(card, button){
-            this.dobivka+=this.dobivka*2;
+        pogodenaKarta(){
+            this.dobivka=this.dobivka*2;
             this.pogodeniKarti++;
         }
     }
-/*    async function fetchCards() {
-        try {
-            const response = await fetch('sources/Cards/deck_of_cards.json');
-            const data = await response.json();
-            return data;
-        } catch (error) {
-            console.error('Error fetching card data:', error);
-        }
-    }*/
-
-    // Function to get a random card
     function getRandomCard() {
         const randomIndex = Math.floor(Math.random() * deckOfCards.length);
         return deckOfCards[randomIndex];
+    }
+    function gameOver() {
+        document.getElementById('GameContainer').style.display = 'none';;
+        let div = document.createElement('div');
+        div.innerHTML+='<span>Game Over!</span><br>';
+        div.innerHTML+='<h4>You won: </h4>' +
+                        '<div class="ScoreGrid"><img src="sources/Cards/icons8-cash-48.png" width="128px" height="auto"><p>'+player.dobivka+'</p>'+
+                        '<img src="sources/Cards/ace_of_hearts.png" width="64px" height="auto"><p>'+player.pogodeniKarti+'</p></div>';
+        document.getElementById('GameOverContainer').appendChild(div);
     }
     function generateRandomCard(){
         let containerCards = document.getElementById('CardContainer');
@@ -254,27 +299,42 @@
         let frontOfImage = document.createElement('img');
         frontOfImage.src = 'sources/Cards/back.png';
         frontOfImage.classList.add('CardImageFront');
-        let card = getRandomCard();
-        image.src = "sources/Cards/" + card.image;
+        currentCard = getRandomCard();
+        image.src = "sources/Cards/" + currentCard.image;
         randomCardDIV.appendChild(frontOfImage)
         randomCardDIV.appendChild(image);
         randomCardDIV.classList.add('cardDiv');
         randomCardDIV.id = "CARD_DIV";
         containerCards.appendChild(randomCardDIV);
     }
-    function flipCard(){
+    function update() {
+        document.getElementById('Score').style.display = 'block';
+        let dobivka = document.getElementById('DobivkaNUM');
+        let pogodeniKarti = document.getElementById('PogodieniKartiNUM');
+        dobivka.innerHTML = player.dobivka;
+        pogodeniKarti.innerHTML = player.pogodeniKarti;
+    }
+    function guessCard(button){
         let div = document.getElementById('CARD_DIV');
         div.classList.add('cardDivHOVERED');
+        if(button.value===currentCard.color){
+            player.pogodenaKarta();
+            update();
+        }else{
+            gameOver();
+        }
         setTimeout(()=>{
             generateRandomCard();
         }, 1400);
     }
+
     document.addEventListener("DOMContentLoaded", ()=>{
         let start = document.getElementById('StartButton');
         start.addEventListener("click", ()=>{
+            document.getElementById('Heading').style.opacity = '0';
             let vlog = document.getElementById('Stake').value;
             vlog = parseInt(vlog);
-            let player = new Player(vlog);
+            player = new Player(vlog);
             if(isNaN(vlog) || vlog===0){
                 alert("Ne bidi retardiran");
             }else{
@@ -302,10 +362,15 @@
     <div id="GameContainer">
         <div id="CardContainer"></div>
         <div id="RedAndBlack">
-            <button class="GambleButton" id="RedButton" value="Red" onclick="flipCard()">Red</button>
-            <button id="BlackButton" class="GambleButton" onclick="flipCard()">Black</button>
+            <button class="GambleButton" id="RedButton" value="Red" onclick="guessCard(this)">Red</button>
+            <button id="BlackButton" class="GambleButton" value="Black" onclick="guessCard(this)">Black</button>
         </div>
     </div>
+    <div id="Score" style="display: none;">
+        <div class="ScoreElement"><img src="sources/Cards/icons8-cash-48.png" width="32px" height="auto"><span id="DobivkaNUM"></span></div>
+        <div class="ScoreElement"><img src="sources/Cards/ace_of_hearts.png" width="24px" height="auto"><span id="PogodieniKartiNUM"></span></div>
+    </div>
+    <div id="GameOverContainer" class="GameOverDiv"></div>
 <footer>Daniel Kostoski &copy; 2023</footer>
 </body>
 </html>
