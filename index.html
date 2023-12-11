@@ -320,13 +320,14 @@
     function guessCard(button){
         let div = document.getElementById('CARD_DIV');
         div.classList.add('cardDivHOVERED');
-        if(button.value===currentCard.color){
-            player.pogodenaKarta();
-            update();
-        }else{
-            gameOver();
-        }
+
         setTimeout(()=>{
+            if(button.value===currentCard.color){
+                player.pogodenaKarta();
+                update();
+            }else{
+                gameOver();
+            }
             generateRandomCard();
         }, 1400);
     }
