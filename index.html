@@ -610,6 +610,7 @@ function guessCard(button) {
             player.pogodenaKarta();
             correctGUESS.play();
             update();
+            navigator.vibrate(100);
         } else {
             wrongGUESS.play();
             gameOver();
