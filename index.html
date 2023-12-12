@@ -90,6 +90,16 @@
         text-align: center;
         font-family: 'Casino Flat', sans-serif;
     }
+    .Button{
+        background-color: red;
+        color: white;
+        padding: 3% 5%;
+        font-size: 1.5em;
+        border-radius: 0.8em;
+        text-align: center;
+        width: 50%;
+        font-family: 'Casino Flat', sans-serif;
+    }
     #GameContainer{
         display: none;
         flex-direction: column;
@@ -207,147 +217,422 @@
     }
 </style>
 <script>
-    const deckOfCards = [
-        {"suit": "hearts", "value": 2, "image": "2_of_hearts.png", "color": "Red"},
-        {"suit": "hearts", "value": 3, "image": "3_of_hearts.png", "color": "Red"},
-        {"suit": "hearts", "value": 4, "image": "4_of_hearts.png", "color": "Red"},
-        {"suit": "hearts", "value": 5, "image": "5_of_hearts.png", "color": "Red"},
-        {"suit": "hearts", "value": 6, "image": "6_of_hearts.png", "color": "Red"},
-        {"suit": "hearts", "value": 7, "image": "7_of_hearts.png", "color": "Red"},
-        {"suit": "hearts", "value": 8, "image": "8_of_hearts.png", "color": "Red"},
-        {"suit": "hearts", "value": 9, "image": "9_of_hearts.png", "color": "Red"},
-        {"suit": "hearts", "value": 10, "image": "10_of_hearts.png", "color": "Red"},
-        {"suit": "hearts", "value": "J", "image": "jack_of_hearts.png", "color": "Red"},
-        {"suit": "hearts", "value": "Q", "image": "queen_of_hearts.png", "color": "Red"},
-        {"suit": "hearts", "value": "K", "image": "king_of_hearts.png", "color": "Red"},
-        {"suit": "hearts", "value": "A", "image": "ace_of_hearts.png", "color": "Red"},
+    const deckOfCards = [{
+    "suit": "hearts",
+    "value": 2,
+    "image": "2_of_hearts.png",
+    "color": "Red"
+},
+    {
+        "suit": "hearts",
+        "value": 3,
+        "image": "3_of_hearts.png",
+        "color": "Red"
+    },
+    {
+        "suit": "hearts",
+        "value": 4,
+        "image": "4_of_hearts.png",
+        "color": "Red"
+    },
+    {
+        "suit": "hearts",
+        "value": 5,
+        "image": "5_of_hearts.png",
+        "color": "Red"
+    },
+    {
+        "suit": "hearts",
+        "value": 6,
+        "image": "6_of_hearts.png",
+        "color": "Red"
+    },
+    {
+        "suit": "hearts",
+        "value": 7,
+        "image": "7_of_hearts.png",
+        "color": "Red"
+    },
+    {
+        "suit": "hearts",
+        "value": 8,
+        "image": "8_of_hearts.png",
+        "color": "Red"
+    },
+    {
+        "suit": "hearts",
+        "value": 9,
+        "image": "9_of_hearts.png",
+        "color": "Red"
+    },
+    {
+        "suit": "hearts",
+        "value": 10,
+        "image": "10_of_hearts.png",
+        "color": "Red"
+    },
+    {
+        "suit": "hearts",
+        "value": "J",
+        "image": "jack_of_hearts.png",
+        "color": "Red"
+    },
+    {
+        "suit": "hearts",
+        "value": "Q",
+        "image": "queen_of_hearts.png",
+        "color": "Red"
+    },
+    {
+        "suit": "hearts",
+        "value": "K",
+        "image": "king_of_hearts.png",
+        "color": "Red"
+    },
+    {
+        "suit": "hearts",
+        "value": "A",
+        "image": "ace_of_hearts.png",
+        "color": "Red"
+    },
 
-        {"suit": "diamonds", "value": 2, "image": "2_of_diamonds.png", "color": "Red"},
-        {"suit": "diamonds", "value": 3, "image": "3_of_diamonds.png", "color": "Red"},
-        {"suit": "diamonds", "value": 4, "image": "4_of_diamonds.png", "color": "Red"},
-        {"suit": "diamonds", "value": 5, "image": "5_of_diamonds.png", "color": "Red"},
-        {"suit": "diamonds", "value": 6, "image": "6_of_diamonds.png", "color": "Red"},
-        {"suit": "diamonds", "value": 7, "image": "7_of_diamonds.png", "color": "Red"},
-        {"suit": "diamonds", "value": 8, "image": "8_of_diamonds.png", "color": "Red"},
-        {"suit": "diamonds", "value": 9, "image": "9_of_diamonds.png", "color": "Red"},
-        {"suit": "diamonds", "value": 10, "image": "10_of_diamonds.png", "color": "Red"},
-        {"suit": "diamonds", "value": "J", "image": "jack_of_diamonds.png", "color": "Red"},
-        {"suit": "diamonds", "value": "Q", "image": "queen_of_diamonds.png", "color": "Red"},
-        {"suit": "diamonds", "value": "K", "image": "king_of_diamonds.png", "color": "Red"},
-        {"suit": "diamonds", "value": "A", "image": "ace_of_diamonds.png", "color": "Red"},
+    {
+        "suit": "diamonds",
+        "value": 2,
+        "image": "2_of_diamonds.png",
+        "color": "Red"
+    },
+    {
+        "suit": "diamonds",
+        "value": 3,
+        "image": "3_of_diamonds.png",
+        "color": "Red"
+    },
+    {
+        "suit": "diamonds",
+        "value": 4,
+        "image": "4_of_diamonds.png",
+        "color": "Red"
+    },
+    {
+        "suit": "diamonds",
+        "value": 5,
+        "image": "5_of_diamonds.png",
+        "color": "Red"
+    },
+    {
+        "suit": "diamonds",
+        "value": 6,
+        "image": "6_of_diamonds.png",
+        "color": "Red"
+    },
+    {
+        "suit": "diamonds",
+        "value": 7,
+        "image": "7_of_diamonds.png",
+        "color": "Red"
+    },
+    {
+        "suit": "diamonds",
+        "value": 8,
+        "image": "8_of_diamonds.png",
+        "color": "Red"
+    },
+    {
+        "suit": "diamonds",
+        "value": 9,
+        "image": "9_of_diamonds.png",
+        "color": "Red"
+    },
+    {
+        "suit": "diamonds",
+        "value": 10,
+        "image": "10_of_diamonds.png",
+        "color": "Red"
+    },
+    {
+        "suit": "diamonds",
+        "value": "J",
+        "image": "jack_of_diamonds.png",
+        "color": "Red"
+    },
+    {
+        "suit": "diamonds",
+        "value": "Q",
+        "image": "queen_of_diamonds.png",
+        "color": "Red"
+    },
+    {
+        "suit": "diamonds",
+        "value": "K",
+        "image": "king_of_diamonds.png",
+        "color": "Red"
+    },
+    {
+        "suit": "diamonds",
+        "value": "A",
+        "image": "ace_of_diamonds.png",
+        "color": "Red"
+    },
 
-        {"suit": "clubs", "value": 2, "image": "2_of_clubs.png", "color": "Black"},
-        {"suit": "clubs", "value": 3, "image": "3_of_clubs.png", "color": "Black"},
-        {"suit": "clubs", "value": 4, "image": "4_of_clubs.png", "color": "Black"},
-        {"suit": "clubs", "value": 5, "image": "5_of_clubs.png", "color": "Black"},
-        {"suit": "clubs", "value": 6, "image": "6_of_clubs.png", "color": "Black"},
-        {"suit": "clubs", "value": 7, "image": "7_of_clubs.png", "color": "Black"},
-        {"suit": "clubs", "value": 8, "image": "8_of_clubs.png", "color": "Black"},
-        {"suit": "clubs", "value": 9, "image": "9_of_clubs.png", "color": "Black"},
-        {"suit": "clubs", "value": 10, "image": "10_of_clubs.png", "color": "Black"},
-        {"suit": "clubs", "value": "J", "image": "jack_of_clubs.png", "color": "Black"},
-        {"suit": "clubs", "value": "Q", "image": "queen_of_clubs.png", "color": "Black"},
-        {"suit": "clubs", "value": "K", "image": "king_of_clubs.png", "color": "Black"},
-        {"suit": "clubs", "value": "A", "image": "ace_of_clubs.png", "color": "Black"},
+    {
+        "suit": "clubs",
+        "value": 2,
+        "image": "2_of_clubs.png",
+        "color": "Black"
+    },
+    {
+        "suit": "clubs",
+        "value": 3,
+        "image": "3_of_clubs.png",
+        "color": "Black"
+    },
+    {
+        "suit": "clubs",
+        "value": 4,
+        "image": "4_of_clubs.png",
+        "color": "Black"
+    },
+    {
+        "suit": "clubs",
+        "value": 5,
+        "image": "5_of_clubs.png",
+        "color": "Black"
+    },
+    {
+        "suit": "clubs",
+        "value": 6,
+        "image": "6_of_clubs.png",
+        "color": "Black"
+    },
+    {
+        "suit": "clubs",
+        "value": 7,
+        "image": "7_of_clubs.png",
+        "color": "Black"
+    },
+    {
+        "suit": "clubs",
+        "value": 8,
+        "image": "8_of_clubs.png",
+        "color": "Black"
+    },
+    {
+        "suit": "clubs",
+        "value": 9,
+        "image": "9_of_clubs.png",
+        "color": "Black"
+    },
+    {
+        "suit": "clubs",
+        "value": 10,
+        "image": "10_of_clubs.png",
+        "color": "Black"
+    },
+    {
+        "suit": "clubs",
+        "value": "J",
+        "image": "jack_of_clubs.png",
+        "color": "Black"
+    },
+    {
+        "suit": "clubs",
+        "value": "Q",
+        "image": "queen_of_clubs.png",
+        "color": "Black"
+    },
+    {
+        "suit": "clubs",
+        "value": "K",
+        "image": "king_of_clubs.png",
+        "color": "Black"
+    },
+    {
+        "suit": "clubs",
+        "value": "A",
+        "image": "ace_of_clubs.png",
+        "color": "Black"
+    },
 
-        {"suit": "spades", "value": 2, "image": "2_of_spades.png", "color": "Black"},
-        {"suit": "spades", "value": 3, "image": "3_of_spades.png", "color": "Black"},
-        {"suit": "spades", "value": 4, "image": "4_of_spades.png", "color": "Black"},
-        {"suit": "spades", "value": 5, "image": "5_of_spades.png", "color": "Black"},
-        {"suit": "spades", "value": 6, "image": "6_of_spades.png", "color": "Black"},
-        {"suit": "spades", "value": 7, "image": "7_of_spades.png", "color": "Black"},
-        {"suit": "spades", "value": 8, "image": "8_of_spades.png", "color": "Black"},
-        {"suit": "spades", "value": 9, "image": "9_of_spades.png", "color": "Black"},
-        {"suit": "spades", "value": 10, "image": "10_of_spades.png", "color": "Black"},
-        {"suit": "spades", "value": "J", "image": "jack_of_spades.png", "color": "Black"},
-        {"suit": "spades", "value": "Q", "image": "queen_of_spades.png", "color": "Black"},
-        {"suit": "spades", "value": "K", "image": "king_of_spades.png", "color": "Black"},
-        {"suit": "spades", "value": "A", "image": "ace_of_spades.png", "color": "Black"}
-    ]
-    var currentCard;
-    var player;
-    class Player{
-        vlog;
-        dobivka;
-        pogodeniKarti
-        constructor(vlog) {
-            this.vlog = vlog;
-            this.dobivka = vlog;
-            this.pogodeniKarti = 0;
+    {
+        "suit": "spades",
+        "value": 2,
+        "image": "2_of_spades.png",
+        "color": "Black"
+    },
+    {
+        "suit": "spades",
+        "value": 3,
+        "image": "3_of_spades.png",
+        "color": "Black"
+    },
+    {
+        "suit": "spades",
+        "value": 4,
+        "image": "4_of_spades.png",
+        "color": "Black"
+    },
+    {
+        "suit": "spades",
+        "value": 5,
+        "image": "5_of_spades.png",
+        "color": "Black"
+    },
+    {
+        "suit": "spades",
+        "value": 6,
+        "image": "6_of_spades.png",
+        "color": "Black"
+    },
+    {
+        "suit": "spades",
+        "value": 7,
+        "image": "7_of_spades.png",
+        "color": "Black"
+    },
+    {
+        "suit": "spades",
+        "value": 8,
+        "image": "8_of_spades.png",
+        "color": "Black"
+    },
+    {
+        "suit": "spades",
+        "value": 9,
+        "image": "9_of_spades.png",
+        "color": "Black"
+    },
+    {
+        "suit": "spades",
+        "value": 10,
+        "image": "10_of_spades.png",
+        "color": "Black"
+    },
+    {
+        "suit": "spades",
+        "value": "J",
+        "image": "jack_of_spades.png",
+        "color": "Black"
+    },
+    {
+        "suit": "spades",
+        "value": "Q",
+        "image": "queen_of_spades.png",
+        "color": "Black"
+    },
+    {
+        "suit": "spades",
+        "value": "K",
+        "image": "king_of_spades.png",
+        "color": "Black"
+    },
+    {
+        "suit": "spades",
+        "value": "A",
+        "image": "ace_of_spades.png",
+        "color": "Black"
+    }
+]
+var currentCard;
+var player;
+const correctGUESS = new Audio('sources/correctGuess.mp3');
+const wrongGUESS = new Audio('sources/wrongGuess.mp3');
+class Player {
+    vlog;
+    dobivka;
+    pogodeniKarti
+    constructor(vlog) {
+        this.vlog = vlog;
+        this.dobivka = vlog;
+        this.pogodeniKarti = 0;
+    }
+    pogodenaKarta() {
+        this.dobivka = this.dobivka * 2;
+        this.pogodeniKarti++;
+    }
+}
+
+function getRandomCard() {
+    const randomIndex = Math.floor(Math.random() * deckOfCards.length);
+    return deckOfCards[randomIndex];
+}
+
+function gameOver() {
+    document.getElementById('GameContainer').style.display = 'none';
+    let div = document.createElement('div');
+    div.innerHTML += '<span>Game Over!</span><br>';
+    div.innerHTML += '<h4>You won: </h4>' +
+        '<div class="ScoreGrid"><img src="sources/Cards/icons8-cash-48.png" width="128px" height="auto"><p>' + player.dobivka + '</p>' +
+        '<img src="sources/Cards/ace_of_hearts.png" width="64px" height="auto"><p>' + player.pogodeniKarti + '</p></div>';
+    let button = document.createElement('button');
+    button.classList.add('Button');
+    button.innerHTML = 'Try Again?';
+    button.addEventListener('click', ()=>{
+        location.reload();
+    });
+    document.getElementById('GameOverContainer').appendChild(div);
+    document.getElementById('GameOverContainer').appendChild(button);
+    document.getElementById('Score').style.opacity = '0';
+}
+
+function generateRandomCard() {
+    let containerCards = document.getElementById('CardContainer');
+    containerCards.innerHTML = "";
+    let randomCardDIV = document.createElement('div');
+    let image = document.createElement('img');
+    image.classList.add('CardImageBack');
+    let frontOfImage = document.createElement('img');
+    frontOfImage.src = 'sources/Cards/back.png';
+    frontOfImage.classList.add('CardImageFront');
+    currentCard = getRandomCard();
+    image.src = "sources/Cards/" + currentCard.image;
+    randomCardDIV.appendChild(frontOfImage)
+    randomCardDIV.appendChild(image);
+    randomCardDIV.classList.add('cardDiv');
+    randomCardDIV.id = "CARD_DIV";
+    containerCards.appendChild(randomCardDIV);
+}
+
+function update() {
+    document.getElementById('Score').style.display = 'block';
+    let dobivka = document.getElementById('DobivkaNUM');
+    let pogodeniKarti = document.getElementById('PogodieniKartiNUM');
+    dobivka.innerHTML = player.dobivka;
+    pogodeniKarti.innerHTML = player.pogodeniKarti;
+}
+
+function guessCard(button) {
+    let div = document.getElementById('CARD_DIV');
+    div.classList.add('cardDivHOVERED');
+
+    setTimeout(() => {
+        if (button.value === currentCard.color) {
+            player.pogodenaKarta();
+            correctGUESS.play();
+            update();
+        } else {
+            wrongGUESS.play();
+            gameOver();
         }
-        pogodenaKarta(){
-            this.dobivka=this.dobivka*2;
-            this.pogodeniKarti++;
-        }
-    }
-    function getRandomCard() {
-        const randomIndex = Math.floor(Math.random() * deckOfCards.length);
-        return deckOfCards[randomIndex];
-    }
-    function gameOver() {
-        document.getElementById('GameContainer').style.display = 'none';;
-        let div = document.createElement('div');
-        div.innerHTML+='<span>Game Over!</span><br>';
-        div.innerHTML+='<h4>You won: </h4>' +
-                        '<div class="ScoreGrid"><img src="sources/Cards/icons8-cash-48.png" width="128px" height="auto"><p>'+player.dobivka+'</p>'+
-                        '<img src="sources/Cards/ace_of_hearts.png" width="64px" height="auto"><p>'+player.pogodeniKarti+'</p></div>';
-        document.getElementById('GameOverContainer').appendChild(div);
-    }
-    function generateRandomCard(){
-        let containerCards = document.getElementById('CardContainer');
-        containerCards.innerHTML = "";
-        let randomCardDIV = document.createElement('div');
-        let image = document.createElement('img');
-        image.classList.add('CardImageBack');
-        let frontOfImage = document.createElement('img');
-        frontOfImage.src = 'sources/Cards/back.png';
-        frontOfImage.classList.add('CardImageFront');
-        currentCard = getRandomCard();
-        image.src = "sources/Cards/" + currentCard.image;
-        randomCardDIV.appendChild(frontOfImage)
-        randomCardDIV.appendChild(image);
-        randomCardDIV.classList.add('cardDiv');
-        randomCardDIV.id = "CARD_DIV";
-        containerCards.appendChild(randomCardDIV);
-    }
-    function update() {
-        document.getElementById('Score').style.display = 'block';
-        let dobivka = document.getElementById('DobivkaNUM');
-        let pogodeniKarti = document.getElementById('PogodieniKartiNUM');
-        dobivka.innerHTML = player.dobivka;
-        pogodeniKarti.innerHTML = player.pogodeniKarti;
-    }
-    function guessCard(button){
-        let div = document.getElementById('CARD_DIV');
-        div.classList.add('cardDivHOVERED');
-
-        setTimeout(()=>{
-            if(button.value===currentCard.color){
-                player.pogodenaKarta();
-                update();
-            }else{
-                gameOver();
-            }
+        generateRandomCard();
+    }, 1400);
+}
+document.addEventListener("DOMContentLoaded", () => {
+    let start = document.getElementById('StartButton');
+    start.addEventListener("click", () => {
+        document.getElementById('Heading').style.opacity = '0';
+        let vlog = document.getElementById('Stake').value;
+        vlog = parseInt(vlog);
+        player = new Player(vlog);
+        if (isNaN(vlog) || vlog === 0) {
+            alert("Ne bidi retardiran");
+        } else {
+            document.getElementById('GameContainer').style.display = 'flex';
+            document.getElementById('StartContainer').style.display = 'none';
             generateRandomCard();
-        }, 1400);
-    }
-
-    document.addEventListener("DOMContentLoaded", ()=>{
-        let start = document.getElementById('StartButton');
-        start.addEventListener("click", ()=>{
-            document.getElementById('Heading').style.opacity = '0';
-            let vlog = document.getElementById('Stake').value;
-            vlog = parseInt(vlog);
-            player = new Player(vlog);
-            if(isNaN(vlog) || vlog===0){
-                alert("Ne bidi retardiran");
-            }else{
-                document.getElementById('GameContainer').style.display = 'flex';
-                document.getElementById('StartContainer').style.display = 'none';
-                generateRandomCard()
-            }
-        })
+        }
     })
+})
 </script>
 <body>
 <span id="Heading">Gam<span>ble</span></span>
